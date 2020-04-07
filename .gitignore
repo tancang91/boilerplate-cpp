@@ -1,0 +1,35 @@
+# Visual Studio Code
+/.vscode/
+/build/
+/release/
+
+# Visual Studio
+/.vs/
+/out/
+/CMakeSettings.json
+
+# VIM: code completion / IntelliSense
+/.clangd/
+/compile_commands.json
+/.ccls
+
+# CMake (CTest)
+/Testing/
+
+# This is a workspace-local sandbox directory with test files not to be included in Git.
+/sandbox/
+
+# Never add any log files.
+*.log
+
+# Never accidentally add any screenshot files.
+*.vt
+
+# NVIDIA Nsight Graphics (Debugger, project files)
+*.nsight-gfxproj
+
+# OS X
+.DS_Store
+
+# Linux/KDE
+.directory
