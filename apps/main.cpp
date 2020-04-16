@@ -4,9 +4,8 @@
 
 int main(int argc, char *argv[])
 {
-    int N = 10;
-    int rel = fib(N);
+    int rel = fib(5);
 
-    std::printf("Fib of %d: %d\n", N, rel);
+    std::printf("Fib of 5: %d\n", rel);
     return 0;
 }

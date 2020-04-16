@@ -35,10 +35,18 @@ endif()
 add_library(fiblib STATIC ${PROJECT_SOURCE_DIR}/src/fib.cpp)
 target_include_directories(fiblib PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
+# ----------------------------------------------------------------------------
+# Executable
 add_executable(target ${PROJECT_SOURCE_DIR}/apps/main.cpp)
-target_link_libraries(target PUBLIC fiblib)
 
-message("Current source dir: ${CMAKE_CURRENT_SOURCE_DIR}")
+set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU>")
+target_compile_options(target PUBLIC
+    $<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>
+)
+target_link_libraries(target PUBLIC
+    "$<$<CONFIG:Debug>:-fsanitize=address>"
+    fiblib
+)
 
 # -----------------------------------------------------------------------------
 # TEST
