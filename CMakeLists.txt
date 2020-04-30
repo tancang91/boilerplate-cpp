@@ -15,9 +15,9 @@ option(FIB_TESTING "Fib testing [default: ON]" OFF)
 
 # Specify compile flag here
 if(("${CMAKE_CXX_COMPILER_ID}" MATCHES "GNU") OR ("${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang"))
-    add_compile_options(-Wall -Wextra)
+    add_compile_options(-Wall -Werror)
 elseif(DEFINED MSVC)
-    add_definitions(-DNOMINMAX)
+    add_compile_options(/W3 /WX)
 endif()
 
 # ----------------------------------------------------------------------------
@@ -41,7 +41,7 @@ add_executable(target ${PROJECT_SOURCE_DIR}/apps/main.cpp)
 
 set(gcc_like_cxx "$<COMPILE_LANG_AND_ID:CXX,ARMClang,AppleClang,Clang,GNU>")
 target_compile_options(target PUBLIC
-    $<${gcc_like_cxx}:-Wall;-Wextra;-Wshadow;-Wformat=2;-Wunused>
+    $<${gcc_like_cxx}:-Wextra;-Wshadow;-Wformat=2;-Wunused>
 )
 target_link_libraries(target PUBLIC
     "$<$<CONFIG:Debug>:-fsanitize=address>"
